@@ -25,13 +25,15 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     let user = await req.json();
     console.log('get -> /api/users', user);
 
+    console.log(user);
+    
     if (!user) {
         return NextResponse.json({ error: 'user not found' });
     }
 
     try {
-        const ack: any = await User.insertMany([user]);
-        return NextResponse.json(ack);
+  //      const ack: any = await User.insertMany([user]);
+        return NextResponse.json({'msg':"done"});
     } catch (error) {
         return NextResponse.json({ error: 'database error' });
     }

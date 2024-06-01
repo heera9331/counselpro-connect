@@ -21,8 +21,9 @@ const Page = (props: any) => {
     const handleChange = (e:any) => {
         setInfo({...info, [e.target.name]: e.target.value});
     }
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log("user to registered >", info);
+        axios.post('/api/users/', {user: info});
     }
 
     return (

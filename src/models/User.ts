@@ -4,9 +4,11 @@ import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 // Interface for User document
 interface UserDocument extends Document {
   name: string;
-  isAdmin: boolean;
+  username: string,
   email: string;
   password: string;
+  collegeName: string,
+  isAdmin: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -18,6 +20,14 @@ interface UserModel extends Model<UserDocument> {}
 const userSchema = new Schema<UserDocument, UserModel>(
   {
     name: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    collegeName: {
       type: String,
       required: true,
     },
