@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { AwsCard, Button, Students, Loading } from "@/components";
+import { AwsCard, Button, Students, Loading } from "../../components";
 import { IoSearch } from "react-icons/io5";
-import { useStudentContext } from "@/hooks";
+import { useStudentContext } from "../../hooks";
 import Link from "next/link";
 
 const RecentRegisteredStudents = () => {

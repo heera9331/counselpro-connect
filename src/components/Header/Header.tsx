@@ -5,7 +5,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { IoIosLogOut } from "react-icons/io";
-import { useAuthContext } from "@/hooks";
+import { useAuthContext } from "../../hooks";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 

@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { Input, Button } from "@/components"
+import { Input, Button } from "../components"
 
 const SearchCounselor = () => {
     const [query, setQuery] = useState("");

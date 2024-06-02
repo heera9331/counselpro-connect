@@ -7,7 +7,7 @@ import {
   JsonToCsvExporter,
   Loading,
   Students,AwsCard, 
-} from "@/components";
+} from "../../components";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";

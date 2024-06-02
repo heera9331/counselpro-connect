@@ -5,9 +5,9 @@
  * background
  */
 
-import { Header, Footer } from "@/components";
+import { Header, Footer } from "../components";
 
-import Breadcrumbs from "@/components/Breadcrumb";
+import Breadcrumbs from "../components/Breadcrumb";
 import { usePathname } from "next/navigation";
 
 
@@ -24,9 +24,9 @@ import "./globals.css"
 /**
  * importing my search context provider and other providers
  */
-import { SearchProvider } from "@/contexts/search-context/SearchContextProvider";
-import { StudentContextProvider } from "@/contexts/StudentContext";
-import { AuthContextProvider } from "@/contexts/AuthContext";
+import { SearchProvider } from "../contexts/search-context/SearchContextProvider";
+import { StudentContextProvider } from "../contexts/StudentContext";
+import { AuthContextProvider } from "../contexts/AuthContext";
 
 
 export default function RootLayout({
@@ -45,8 +45,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head> 
-        <meta name="author" content="Heera Singh Lodhi" />
+      <head>  
+        <meta name="author" content="Heera Singh Lodhi" /> 
+        <script src="https://cdn.tailwindcss.com"></script>
       </head>
       <body className="m-auto bg-bgWhite-100">
         <AuthContextProvider>
