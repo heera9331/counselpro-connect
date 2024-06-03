@@ -9,7 +9,7 @@
 import { connectDB } from "../../../utils";
 import { User } from "../../../models";
 import { NextResponse, NextRequest } from "next/server";
-import { sendEmail } from "../../../lib/email";
+import sendEmail from "../../../lib/email";
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
   await connectDB();
@@ -19,31 +19,22 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   return NextResponse.json(users);
 };
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export async function POST(req: NextRequest, res: NextResponse) {
   await connectDB();
-  let user = await req.json();
-  console.log("get -> /api/users", user);
 
-  const { email, password } = await req.json();
-
-  if (!user) {
-    return NextResponse.json({ error: "user not found" });
-  }
-
-  // Validate input
-  if (!email || !password) {
-    return NextResponse.json({ msg: "input values" }, { status: 400 });
-  }
+  console.log("get -> /api/users");
 
   try {
-    //   const ack: any = await User.insertMany([user]);
-    await sendEmail(
-      email,
-      "Welcome to Our App",
-      "<body><p>Thank you for registering!</p></body"
-    );
-    return NextResponse.json({ msg: "done" });
+    let emailResponse = await sendEmail({
+      from: "", // default because we can't use gmail, we use own if have
+      to: "heera.madquick@gmail.com",
+      subject: "You are awesome!",
+      html: "<h1>Welcome to conselpro connect</h1>",
+    });
+
+    return NextResponse.json({ msg: "done", emailResponse });
   } catch (error) {
+    console.log("email send error ", error);
     return NextResponse.json({ error: "database error" });
   }
-};
+}

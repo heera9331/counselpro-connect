@@ -1,28 +1,50 @@
 import nodemailer from "nodemailer";
 
-export const sendEmail = async (to: string, subject: string, html: string) => {
+const endpoint = process.env.MAILTRAP_ENDPOINT || "";
+const token = process.env.MAILTRAP_TOKEN || "";
+
+console.log(endpoint);
+console.log(token);
+
+const sendEmail = async ({
+  from,
+  to,
+  subject,
+  html,
+}: {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}) => {
   try {
-    // Create a transporter object using SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true, // true for 465, false for other ports
-      auth: {
-        user: process.env.EMAIL_USER, // Use environment variables
-        pass: process.env.EMAIL_PASS, // Use environment variables
+    const { MailtrapClient } = require("mailtrap");
+    const client = new MailtrapClient({
+      endpoint,
+      token,
+    });
+
+    const sender = {
+      email: "mailtrap@demomailtrap.com",
+      name: "Thank for choosing this app",
+    };
+    const recipients = [
+      {
+        email: to,
       },
-    });
+    ];
 
-    // Send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: "heera.madquick@gmail.com", // sender address
-      to, // list of receivers
-      subject, // Subject line
-      html, // html body
+    return client.send({
+      from: sender,
+      to: recipients,
+      subject: subject,
+      text: html,
+      category: "Integration Test",
     });
-
-    console.log("Message sent: %s", info.messageId);
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.log("error while sending email");
+    throw new Error(error.message);
   }
 };
+
+export default sendEmail;

@@ -13,7 +13,6 @@ const connectDB = async () => {
       console.log("Using existing connection");
       return;
     }
-    console.log(MONGO);
     const db = await mongoose.connect(MONGO);
     connection.isConnected = db.connections[0].readyState;
     console.log("db is connected");

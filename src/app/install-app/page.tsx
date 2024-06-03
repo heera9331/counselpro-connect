@@ -1,5 +1,5 @@
 "use client"
-import {Input, AwsCard, Button, Loading} from "../../components";
+import { Input, AwsCard, Button, Loading } from "../../components";
 import { useState } from "react";
 import axios from "axios";
 import React from "react";
@@ -17,15 +17,15 @@ const Page = (props: any) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-
     const handleChange = (e:any) => {
         setInfo({...info, [e.target.name]: e.target.value});
     }
     
     const handleSubmit = async () => {
         console.log("user to registered >", info);
-        let res = await axios.post('/api/users/', {user: info});
-        console.log(res);
+        let res = await axios.post('/api/users/', JSON.stringify({user: info}));
+        res = await res.data;
+        console.log("response", res);
     }
 
     return (
