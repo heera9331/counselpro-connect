@@ -10,13 +10,25 @@ const Footer = () => {
               <b>Design & Developed by</b>
             </em>{" "}
             -{" "}
-            <a
+            <span>
+              <a
               href="https://github.com/heera9331"
               target="_parent"
               rel="noreferrer"
             >
               Heera Singh Lodhi
             </a>
+            </span>
+            <span className="px-2">&</span>
+            <span>
+              <a
+              href="https://github.com/rahul19sen"
+              target="_parent"
+              rel="noreferrer"
+            >
+              Rahul Sen
+            </a>
+            </span>
           </p>
           <p>&copy; 2023 - IMEC</p>
         </div>
