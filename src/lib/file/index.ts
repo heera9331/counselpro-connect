@@ -23,7 +23,11 @@ const saveMediaFile = async (buffer: Uint8Array, filename: string) => {
       await fs.mkdir(uploadDir, { recursive: true });
     }
 
-    const filePath = path.join(uploadDir, filename);
+    // Add a timestamp to the filename for uniqueness
+    const timestamp = now.toISOString().replace(/[-:.]/g, "");
+    const uniqueFilename = `${timestamp}_${filename}`;
+    const filePath = path.join(uploadDir, uniqueFilename);
+
     await fs.writeFile(filePath, buffer);
 
     console.log(`File saved to ${filePath}`);
@@ -31,7 +35,7 @@ const saveMediaFile = async (buffer: Uint8Array, filename: string) => {
     return { filePath };
   } catch (error) {
     console.error("File upload error:", error);
-    throw new Error("File upload failed");
+    return null;
   }
 };
 
