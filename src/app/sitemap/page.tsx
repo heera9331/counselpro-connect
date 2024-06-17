@@ -12,6 +12,7 @@ export default function Page(props: any) {
     { path: "/sitemap", title: "SiteMap" },
     { path: "/logout", title: "Logout" },
     { path: "/tests", title: "Tests" },
+    { path: "/install-app", title: "Install App" },
   ];
 
   return (
